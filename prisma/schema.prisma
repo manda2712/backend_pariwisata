@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id            Int    @id @default(autoincrement())
+  nama_Lengkap  String
+  jenis_kelamin String
+  username      String
+  password      String
+  role          Role
+}
+
+enum Role {
+  Admin
+  user
+}
+
+model Destination {
+  id             Int            @id @default(autoincrement())
+  name           String
+  location       String
+  description    String
+  image          String
+  accommodations Accomodation[]
+  rentals        Rental[]
+  tourPackages   TourPackage[]
+}
+
+model Accomodation {
+  id            Int         @id @default(autoincrement())
+  name          String
+  address       String
+  price         String
+  description   String
+  image         String
+  destinationId Int
+  destination   Destination @relation(fields: [destinationId], references: [id])
+}
+
+model Rental {
+  id            Int         @id @default(autoincrement())
+  name          String
+  carType       String
+  price         String
+  contact       String
+  image         String
+  destinationId Int
+  destination   Destination @relation(fields: [destinationId], references: [id])
+}
+
+model TourPackage {
+  id            Int         @id @default(autoincrement())
+  name          String
+  duration      String
+  price         String
+  description   String
+  contact       String
+  image         String
+  destinationId Int
+  destination   Destination @relation(fields: [destinationId], references: [id])
+}
+
+model Ulasan {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  rating    Int
+  komentar  String
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  nameEvent   String
+  description String
+  location    String
+  foto        String
+  startdate   DateTime
+  enddate     DateTime
+}
