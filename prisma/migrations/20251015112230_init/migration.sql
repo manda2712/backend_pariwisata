@@ -53,13 +53,11 @@ CREATE TABLE "public"."Rental" (
 -- CreateTable
 CREATE TABLE "public"."TourPackage" (
     "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
-    "duration" TEXT NOT NULL,
-    "price" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "contact" TEXT NOT NULL,
-    "image" TEXT NOT NULL,
-    "destinationId" INTEGER NOT NULL,
+    "nama_wisata" TEXT NOT NULL,
+    "harga" TEXT NOT NULL,
+    "deskripsi" TEXT NOT NULL,
+    "kontak" TEXT NOT NULL,
+    "foto" TEXT NOT NULL,
 
     CONSTRAINT "TourPackage_pkey" PRIMARY KEY ("id")
 );
@@ -93,6 +91,3 @@ ALTER TABLE "public"."Accomodation" ADD CONSTRAINT "Accomodation_destinationId_f
 
 -- AddForeignKey
 ALTER TABLE "public"."Rental" ADD CONSTRAINT "Rental_destinationId_fkey" FOREIGN KEY ("destinationId") REFERENCES "public"."Destination"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "public"."TourPackage" ADD CONSTRAINT "TourPackage_destinationId_fkey" FOREIGN KEY ("destinationId") REFERENCES "public"."Destination"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

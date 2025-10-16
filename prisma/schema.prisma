@@ -35,7 +35,6 @@ model Destination {
   image          String
   accommodations Accomodation[]
   rentals        Rental[]
-  tourPackages   TourPackage[]
 }
 
 model Accomodation {
@@ -61,15 +60,12 @@ model Rental {
 }
 
 model TourPackage {
-  id            Int         @id @default(autoincrement())
-  name          String
-  duration      String
-  price         String
-  description   String
-  contact       String
-  image         String
-  destinationId Int
-  destination   Destination @relation(fields: [destinationId], references: [id])
+  id          Int    @id @default(autoincrement())
+  nama_wisata String
+  harga       String
+  deskripsi   String
+  kontak      String
+  media       String
 }
 
 model Ulasan {

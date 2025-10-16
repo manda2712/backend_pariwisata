@@ -26,3 +26,6 @@ app.use('/api/atraksi', eventController)
 
 const ulasanController = require('./ulasan/ulasan.controller')
 app.use('/api/ulasan', ulasanController)
+
+const tourPackageController = require('./TourPackage/tourPackage.controller')
+app.use('/api/tourPackage', tourPackageController)
