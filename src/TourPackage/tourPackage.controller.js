@@ -5,16 +5,14 @@ const router = express.Router()
 const upload = require('../middleware/upload.middleware')
 
 router.post('/insert', upload.single('media'), async (req, res) => {
-  console.log('➡️ Masuk ke route /insert')
-  console.log('Field file yang dikirim:', req.body, req.file)
-
   try {
     const newTourPackges = {
       nama_wisata: req.body.nama_wisata,
       harga: req.body.harga,
       deskripsi: req.body.deskripsi,
       kontak: req.body.kontak,
-      media: req.file ? `/uploads/${req.file.filename}` : null
+      media: req.file ? `/uploads/${req.file.filename}` : null,
+      lokasi: req.body.lokasi
     }
     const newTourPackge = await tourPackageService.createTourPackage(
       newTourPackges
@@ -54,7 +52,8 @@ router.patch('/:id', upload.single('media'), async (req, res) => {
       ...(req.body.harga && { harga: req.body.harga }),
       ...(req.body.deskripsi && { deskripsi: req.body.deskripsi }),
       ...(req.body.kontak && { kontak: req.body.kontak }),
-      media: req.file ? `/uploads/${req.file.filename}` : null
+      media: req.file ? `/uploads/${req.file.filename}` : null,
+      ...(req.body.lokasi && { lokasi: req.body.lokasi })
     }
     const updateTourPackage = await tourPackageService.editTourPackageById(
       tourPackageId,

@@ -66,6 +66,7 @@ model TourPackage {
   deskripsi   String
   kontak      String
   media       String
+  lokasi      String
 }
 
 model Ulasan {

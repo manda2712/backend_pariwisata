@@ -43,7 +43,27 @@ async function login (username, password) {
   return { admin, token }
 }
 
+async function getAdminById (id) {
+  const admin = await adminRepository.findAdminById(id)
+
+  if (!admin) {
+    throw new Error('Cannot Find User By Id')
+  }
+  return admin
+}
+
+async function patchAdminById (id, body) {
+  const updateData = { ...body }
+
+  if (updateData.password) {
+    updateData.password = await bcrypt.hash(updateData.password, 10)
+  }
+
+  return await adminRepository.editAdminById(id, updateData)
+}
 module.exports = {
   register,
-  login
+  login,
+  getAdminById,
+  patchAdminById
 }

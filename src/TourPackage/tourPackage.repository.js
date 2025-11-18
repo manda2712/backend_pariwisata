@@ -7,7 +7,8 @@ async function insertTourPackage (tourPackage) {
       harga: tourPackage.harga,
       deskripsi: tourPackage.deskripsi,
       kontak: tourPackage.kontak,
-      media: tourPackage.media
+      media: tourPackage.media,
+      lokasi: tourPackage.lokasi
     }
   })
   return newTourPackge
@@ -21,7 +22,8 @@ async function findTourPacakage () {
       harga: true,
       deskripsi: true,
       kontak: true,
-      media: true
+      media: true,
+      lokasi: true
     }
   })
   return tourPackage
@@ -46,7 +48,8 @@ async function editTourPackage (id, tourPackage) {
       harga: tourPackage.harga,
       deskripsi: tourPackage.deskripsi,
       kontak: tourPackage.kontak,
-      media: tourPackage.media
+      media: tourPackage.media,
+      lokasi: tourPackage.lokasi
     }
   })
   return updateTourPackage

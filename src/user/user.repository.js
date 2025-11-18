@@ -16,4 +16,39 @@ async function findAdmin (username) {
   })
 }
 
-module.exports = { createAdmin, findAdmin }
+async function findAdminById (id) {
+  const admin = await prisma.admin.findUnique({
+    where: {
+      id: parseInt(id)
+    },
+    select: {
+      id: true,
+      username: true,
+      nama_Lengkap: true,
+      role: true,
+      password: true
+    }
+  })
+  return admin
+}
+
+async function editAdminById (id, data) {
+  try {
+    const updatedAdmin = await prisma.admin.update({
+      where: { id: parseInt(id) },
+      data,
+      select: {
+        id: true,
+        username: true,
+        nama_Lengkap: true,
+        role: true
+      }
+    })
+    return updatedAdmin
+  } catch (error) {
+    console.error('Error saat update admin:', error)
+    throw new Error('failed to update admin')
+  }
+}
+
+module.exports = { createAdmin, findAdmin, findAdminById, editAdminById }

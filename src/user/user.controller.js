@@ -15,6 +15,7 @@ router.post('/register', async (req, res, next) => {
     )
     res.status(201).json({
       data: {
+        id: newAdmin.id,
         nama_Lengkap: newAdmin.nama_Lengkap,
         jenis_kelamin: newAdmin.jenis_kelamin,
         username: newAdmin.username,
@@ -39,6 +40,35 @@ router.post('/login', async (req, res) => {
     res.status(200).json({ data: admin, message: 'Login berhasil' })
   } catch (error) {
     res.status(401).json({ error: error.message })
+  }
+})
+
+router.get('/:id', async (req, res) => {
+  try {
+    const adminId = parseInt(req.params.id)
+    const admin = await adminService.getAdminById(adminId)
+    res.send(admin)
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
+})
+
+router.patch('/:id', async (req, res) => {
+  try {
+    const adminId = parseInt(req.params.id)
+    const body = req.body
+
+    if (!body || Object.keys(body).length === 0) {
+      return res.status(400).json({ error: 'Tidak ada dtaa yang diubah' })
+    }
+
+    const updateAdmin = await adminService.patchAdminById(adminId, body)
+    res.status(200).json({
+      message: 'Data berhasil diperbaharui',
+      data: updateAdmin
+    })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
 })
 
