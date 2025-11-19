@@ -25,6 +25,7 @@ async function findAdminById (id) {
       id: true,
       username: true,
       nama_Lengkap: true,
+      jenis_kelamin: true,
       role: true,
       password: true
     }
@@ -41,6 +42,7 @@ async function editAdminById (id, data) {
         id: true,
         username: true,
         nama_Lengkap: true,
+        jenis_kelamin : true,
         role: true
       }
     })
