@@ -52,7 +52,7 @@ router.patch('/:id', upload.single('media'), async (req, res) => {
       ...(req.body.harga && { harga: req.body.harga }),
       ...(req.body.deskripsi && { deskripsi: req.body.deskripsi }),
       ...(req.body.kontak && { kontak: req.body.kontak }),
-      media: req.file ? `/uploads/${req.file.filename}` : null,
+      ...(req.file && { media: `/uploads/${req.file.filename}` }),
       ...(req.body.lokasi && { lokasi: req.body.lokasi })
     }
     const updateTourPackage = await tourPackageService.editTourPackageById(
