@@ -46,9 +46,10 @@ async function editEvent (id, event) {
     data: {
       nameEvent: event.nameEvent,
       description: event.description,
+      location: event.location,
       foto: event.foto,
-      startdate: new Date(event.date),
-      enddate: new Date(event.date)
+      startdate: event.startdate ? new Date(event.startdate) : undefined,
+      enddate: event.enddate ? new Date(event.enddate) : undefined
     }
   })
   return updateEvent
