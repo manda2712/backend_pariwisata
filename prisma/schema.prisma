@@ -27,38 +27,6 @@ enum Role {
   user
 }
 
-model Destination {
-  id             Int            @id @default(autoincrement())
-  name           String
-  location       String
-  description    String
-  image          String
-  accommodations Accomodation[]
-  rentals        Rental[]
-}
-
-model Accomodation {
-  id            Int         @id @default(autoincrement())
-  name          String
-  address       String
-  price         String
-  description   String
-  image         String
-  destinationId Int
-  destination   Destination @relation(fields: [destinationId], references: [id])
-}
-
-model Rental {
-  id            Int         @id @default(autoincrement())
-  name          String
-  carType       String
-  price         String
-  contact       String
-  image         String
-  destinationId Int
-  destination   Destination @relation(fields: [destinationId], references: [id])
-}
-
 model TourPackage {
   id          Int    @id @default(autoincrement())
   nama_wisata String
@@ -85,4 +53,40 @@ model Event {
   foto        String
   startdate   DateTime
   enddate     DateTime
+}
+
+model desaWisata {
+  id           Int       @id @default(autoincrement())
+  namaDesa     String
+  foto         String
+  lokasi       String
+  deskripsi    String
+  longitude    String
+  latitude     String
+  jenisDesa    JenisDesa
+  jalur_darat  String
+  jalaur_udara String
+  jalur_laut   String
+}
+
+enum JenisDesa {
+  DESA_UNGGULAN
+  DESA_WISATA
+}
+
+model Kuliner {
+  id           Int          @id @default(autoincrement())
+  foto         String
+  nama_lengkap String
+  deskripsi    String
+  rumahMakans  RumahMakan[]
+}
+
+model RumahMakan {
+  id        Int     @id @default(autoincrement())
+  resto     String
+  foto      String
+  kulinerId Int
+  lokasi    String
+  kuliner   Kuliner @relation(fields: [kulinerId], references: [id])
 }
