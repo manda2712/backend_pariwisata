@@ -60,8 +60,8 @@ async function editDesa (id, desaWisata) {
       latitude: desaWisata.latitude,
       jenisDesa: desaWisata.jenisDesa,
       jalur_darat: desaWisata.jalur_darat,
-      jalaur_udara: desaWisata.jalaur_udara,
-      jalur_laut: desaWisata.jalaur_laut
+      jalur_udara: desaWisata.jalur_udara,
+      jalur_laut: desaWisata.jalur_laut
     }
   })
   return updateDesa

@@ -16,7 +16,7 @@ router.post('/insert', upload.single('foto'), async (req, res) => {
       latitude: req.body.latitude,
       jenisDesa: req.body.jenisDesa,
       jalur_darat: req.body.jalur_darat,
-      jalaur_udara: req.body.jalaur_udara,
+      jalur_udara: req.body.jalur_udara,
       jalur_laut: req.body.jalur_laut
     }
     const newDesa = await desaService.createDesa(newDesas)
@@ -57,7 +57,7 @@ router.patch('/:id', upload.single('foto'), async (req, res) => {
       ...(req.body.latitude && { latitude: req.body.latitude }),
       ...(req.body.jenisDesa && { jenisDesa: req.body.jenisDesa }),
       ...(req.body.jalur_darat && { jalur_darat: req.body.jalur_darat }),
-      ...(req.body.jalaur_udara && { jalaur_udara: req.body.jenisDesa }),
+      ...(req.body.jalur_udara && { jalur_udara: req.body.jalaur_udara }),
       ...(req.body.jalur_laut && { jalur_laut: req.body.jalur_laut })
     }
     const updateDesa = await desaService.editDesaById(desaWistaId, desaWisata)

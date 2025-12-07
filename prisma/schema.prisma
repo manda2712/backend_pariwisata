@@ -56,17 +56,17 @@ model Event {
 }
 
 model desaWisata {
-  id           Int       @id @default(autoincrement())
-  namaDesa     String
-  foto         String
-  lokasi       String
-  deskripsi    String
-  longitude    String
-  latitude     String
-  jenisDesa    JenisDesa
-  jalur_darat  String
-  jalaur_udara String
-  jalur_laut   String
+  id          Int       @id @default(autoincrement())
+  namaDesa    String
+  foto        String
+  lokasi      String
+  deskripsi   String
+  longitude   String
+  latitude    String
+  jenisDesa   JenisDesa
+  jalur_darat String
+  jalur_udara String
+  jalur_laut  String
 }
 
 enum JenisDesa {
@@ -76,8 +76,8 @@ enum JenisDesa {
 
 model Kuliner {
   id           Int          @id @default(autoincrement())
+  nama_makanan String
   foto         String
-  nama_lengkap String
   deskripsi    String
   rumahMakans  RumahMakan[]
 }

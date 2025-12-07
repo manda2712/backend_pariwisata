@@ -32,3 +32,9 @@ app.use('/api/tourPackage', tourPackageController)
 
 const desaWisataController = require('./desaWisata/desaWisata.controller')
 app.use('/api/desaWisata', desaWisataController)
+
+const rumahMakanController = require('./rumahMakan/rumahMakan.controller')
+app.use('/api/rumahMakan', rumahMakanController)
+
+const kulinerController = require('./kuliner/kuliner.controller')
+app.use('/api/kuliner', kulinerController)
