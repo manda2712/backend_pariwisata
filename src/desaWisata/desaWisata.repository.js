@@ -34,7 +34,7 @@ async function findDesa () {
       jalur_laut: true
     }
   })
-  return desa[0]
+  return desa
 }
 
 async function findDesaById (id) {

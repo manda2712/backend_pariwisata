@@ -83,10 +83,26 @@ model Kuliner {
 }
 
 model RumahMakan {
-  id        Int     @id @default(autoincrement())
-  resto     String
-  foto      String
-  kulinerId Int
-  lokasi    String
-  kuliner   Kuliner @relation(fields: [kulinerId], references: [id])
+  id         Int     @id @default(autoincrement())
+  resto      String
+  foto       String
+  kulinerId  Int
+  lokasi     String
+  link_gmaps String
+  kuliner    Kuliner @relation(fields: [kulinerId], references: [id])
+}
+
+model Hotel {
+  id                 Int     @id @default(autoincrement())
+  nama_hotel         String
+  foto               String
+  telepon            String
+  alamat             String
+  deskripsi          String
+  jumlah_kamar       String
+  jumlah_tempatTidur String
+  harga              String?
+  website            String?
+  link_gmaps         String
+  lokasi             String
 }

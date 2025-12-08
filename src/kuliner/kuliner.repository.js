@@ -14,6 +14,7 @@ async function insertKuliner (kuliner) {
 async function findKuliner () {
   const kuliner = await prisma.kuliner.findMany({
     select: {
+      id: true,
       nama_makanan: true,
       foto: true,
       deskripsi: true

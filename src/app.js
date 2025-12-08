@@ -38,3 +38,6 @@ app.use('/api/rumahMakan', rumahMakanController)
 
 const kulinerController = require('./kuliner/kuliner.controller')
 app.use('/api/kuliner', kulinerController)
+
+const hotelController = require('./hotel/hotel.controller')
+app.use('/api/hotel', hotelController)

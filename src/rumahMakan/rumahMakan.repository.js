@@ -5,6 +5,7 @@ async function insertRumahMakan (rumahMakan) {
     data: {
       resto: rumahMakan.resto,
       foto: rumahMakan.foto,
+      link_gmaps: rumahMakan.link_gmaps,
       kulinerId: rumahMakan.kulinerId,
       lokasi: rumahMakan.lokasi
     },
@@ -26,6 +27,7 @@ async function findRumahMakan () {
       resto: true,
       foto: true,
       lokasi: true,
+      link_gmaps: true,
       kulinerId: true,
       kuliner: {
         select: {
@@ -61,6 +63,7 @@ async function editRumahMakan (id, rumahMakan) {
     data: {
       resto: rumahMakan.resto,
       foto: rumahMakan.foto,
+      link_gmaps: rumahMakan.link_gmaps,
       kulinerId: rumahMakan.kulinerId,
       lokasi: rumahMakan.lokasi
     },
