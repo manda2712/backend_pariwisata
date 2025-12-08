@@ -22,10 +22,11 @@ async function insertRumahMakan (rumahMakan) {
 async function findRumahMakan () {
   const rumahMakan = await prisma.rumahMakan.findMany({
     select: {
+      id: true,
       resto: true,
       foto: true,
-      kulinerId: true,
       lokasi: true,
+      kulinerId: true,
       kuliner: {
         select: {
           nama_makanan: true

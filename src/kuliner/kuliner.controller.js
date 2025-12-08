@@ -28,10 +28,10 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const kuliner = await kulinerService.getAllKuliner()
+    const kuliner = await kulinerService.getKulinerById(req.params.id)
     res.status(200).json(kuliner)
   } catch (error) {
-    res.status(500).json(kuliner)
+    res.status(500).json({ message: error.message })
   }
 })
 router.patch('/:id', upload.single('foto'), async (req, res) => {

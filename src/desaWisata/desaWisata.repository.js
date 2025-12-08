@@ -11,7 +11,7 @@ async function insertDesa (desaWisata) {
       latitude: desaWisata.latitude,
       jenisDesa: desaWisata.jenisDesa,
       jalur_darat: desaWisata.jalur_darat,
-      jalaur_udara: desaWisata.jalaur_udara,
+      jalur_udara: desaWisata.jalur_udara,
       jalur_laut: desaWisata.jalur_laut
     }
   })
@@ -30,11 +30,11 @@ async function findDesa () {
       latitude: true,
       jenisDesa: true,
       jalur_darat: true,
-      jalaur_udara: true,
+      jalur_udara: true,
       jalur_laut: true
     }
   })
-  return desa
+  return desa[0]
 }
 
 async function findDesaById (id) {
