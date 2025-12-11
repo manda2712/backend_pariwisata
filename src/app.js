@@ -41,3 +41,6 @@ app.use('/api/kuliner', kulinerController)
 
 const hotelController = require('./hotel/hotel.controller')
 app.use('/api/hotel', hotelController)
+
+const jarakDesaController = require('./jarakDesa/jarakDesa.controller')
+app.use('/api/jarak', jarakDesaController)

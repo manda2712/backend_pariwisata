@@ -2,7 +2,6 @@ const express = require('express')
 const upload = require('../middleware/upload.middleware')
 const router = express.Router()
 const desaService = require('./desaWisata.service')
-const { desaWisata } = require('../db')
 
 router.post('/insert', upload.single('foto'), async (req, res) => {
   try {
@@ -14,10 +13,7 @@ router.post('/insert', upload.single('foto'), async (req, res) => {
       deskripsi: req.body.deskripsi,
       longitude: req.body.longitude,
       latitude: req.body.latitude,
-      jenisDesa: req.body.jenisDesa,
-      jalur_darat: req.body.jalur_darat,
-      jalur_udara: req.body.jalur_udara,
-      jalur_laut: req.body.jalur_laut
+      jenisDesa: req.body.jenisDesa
     }
     const newDesa = await desaService.createDesa(newDesas)
     res.status(201).json(newDesa)
@@ -55,10 +51,7 @@ router.patch('/:id', upload.single('foto'), async (req, res) => {
       ...(req.file && { foto: `/uploads/${req.file.filename}` }),
       ...(req.body.longitude && { longitude: req.body.longitude }),
       ...(req.body.latitude && { latitude: req.body.latitude }),
-      ...(req.body.jenisDesa && { jenisDesa: req.body.jenisDesa }),
-      ...(req.body.jalur_darat && { jalur_darat: req.body.jalur_darat }),
-      ...(req.body.jalur_udara && { jalur_udara: req.body.jalaur_udara }),
-      ...(req.body.jalur_laut && { jalur_laut: req.body.jalur_laut })
+      ...(req.body.jenisDesa && { jenisDesa: req.body.jenisDesa })
     }
     const updateDesa = await desaService.editDesaById(desaWistaId, desaWisata)
     res.status(200).json(updateDesa)

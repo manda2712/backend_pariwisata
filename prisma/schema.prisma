@@ -56,17 +56,30 @@ model Event {
 }
 
 model desaWisata {
-  id          Int       @id @default(autoincrement())
-  namaDesa    String
-  foto        String
-  lokasi      String
-  deskripsi   String
-  longitude   String
-  latitude    String
-  jenisDesa   JenisDesa
+  id        Int         @id @default(autoincrement())
+  namaDesa  String
+  foto      String
+  lokasi    String
+  deskripsi String
+  longitude String
+  latitude  String
+  jenisDesa JenisDesa
+  jarak     jarakDesa[]
+}
+
+model jarakDesa {
+  id          Int        @id @default(autoincrement())
+  desaId      Int
+  titikKota   Kota
+  jalur_laut  String
   jalur_darat String
   jalur_udara String
-  jalur_laut  String
+  desa        desaWisata @relation(fields: [desaId], references: [id])
+}
+
+enum Kota {
+  PALU
+  LUWUK
 }
 
 enum JenisDesa {
@@ -79,15 +92,14 @@ model Kuliner {
   nama_makanan String
   foto         String
   deskripsi    String
+  lokasi       String
   rumahMakans  RumahMakan[]
 }
 
 model RumahMakan {
   id         Int     @id @default(autoincrement())
   resto      String
-  foto       String
   kulinerId  Int
-  lokasi     String
   link_gmaps String
   kuliner    Kuliner @relation(fields: [kulinerId], references: [id])
 }
@@ -97,8 +109,6 @@ model Hotel {
   nama_hotel         String
   foto               String
   telepon            String
-  alamat             String
-  deskripsi          String
   jumlah_kamar       String
   jumlah_tempatTidur String
   harga              String?

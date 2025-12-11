@@ -17,7 +17,7 @@ router.post('/insert', upload.single('foto'), async (req, res) => {
     )
     res.status(200).json(newRumahMakan)
   } catch (error) {
-    res.status(400).json({ messaga: error.message })
+    res.status(400).json({ message: error.message })
   }
 })
 
@@ -45,7 +45,7 @@ router.patch('/:id', upload.single('foto'), async (req, res) => {
     const rumahMakan = {
       ...(req.body.resto && { resto: req.body.resto }),
       ...(req.file && { foto: `/uploads/${req.file.filename}` }),
-      ...(req.body.kulinerId && { kulinerId: req.body.kulinerId }),
+      ...(req.body.kulinerId && { kulinerId: Number(req.body.kulinerId) }),
       ...(req.body.link_gmaps && { link_gmaps: req.body.link_gmaps }),
       ...(req.body.lokasi && { lokasi: req.body.lokasi })
     }

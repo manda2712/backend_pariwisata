@@ -9,10 +9,7 @@ async function insertDesa (desaWisata) {
       deskripsi: desaWisata.deskripsi,
       longitude: desaWisata.longitude,
       latitude: desaWisata.latitude,
-      jenisDesa: desaWisata.jenisDesa,
-      jalur_darat: desaWisata.jalur_darat,
-      jalur_udara: desaWisata.jalur_udara,
-      jalur_laut: desaWisata.jalur_laut
+      jenisDesa: desaWisata.jenisDesa
     }
   })
   return newDesa
@@ -28,10 +25,7 @@ async function findDesa () {
       deskripsi: true,
       longitude: true,
       latitude: true,
-      jenisDesa: true,
-      jalur_darat: true,
-      jalur_udara: true,
-      jalur_laut: true
+      jenisDesa: true
     }
   })
   return desa
@@ -58,10 +52,7 @@ async function editDesa (id, desaWisata) {
       deskripsi: desaWisata.deskripsi,
       longitude: desaWisata.longitude,
       latitude: desaWisata.latitude,
-      jenisDesa: desaWisata.jenisDesa,
-      jalur_darat: desaWisata.jalur_darat,
-      jalur_udara: desaWisata.jalur_udara,
-      jalur_laut: desaWisata.jalur_laut
+      jenisDesa: desaWisata.jenisDesa
     }
   })
   return updateDesa
