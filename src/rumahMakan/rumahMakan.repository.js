@@ -4,10 +4,8 @@ async function insertRumahMakan (rumahMakan) {
   const newRumahMakan = await prisma.rumahMakan.create({
     data: {
       resto: rumahMakan.resto,
-      foto: rumahMakan.foto,
       link_gmaps: rumahMakan.link_gmaps,
       kulinerId: rumahMakan.kulinerId,
-      lokasi: rumahMakan.lokasi
     },
     include: {
       kuliner: {
@@ -25,8 +23,6 @@ async function findRumahMakan () {
     select: {
       id: true,
       resto: true,
-      foto: true,
-      lokasi: true,
       link_gmaps: true,
       kulinerId: true,
       kuliner: {
@@ -62,10 +58,8 @@ async function editRumahMakan (id, rumahMakan) {
     },
     data: {
       resto: rumahMakan.resto,
-      foto: rumahMakan.foto,
       link_gmaps: rumahMakan.link_gmaps,
       kulinerId: rumahMakan.kulinerId,
-      lokasi: rumahMakan.lokasi
     },
     include: {
       kuliner: {

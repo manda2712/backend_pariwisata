@@ -1,72 +1,81 @@
-const express = require('express')
-const router = express.Router()
-const upload = require('../middleware/upload.middleware')
-const kulinerService = require('./kuliner.service')
+const express = require("express");
+const router = express.Router();
+const upload = require("../middleware/upload.middleware");
+const kulinerService = require("./kuliner.service");
 
-router.post('/insert', upload.single('foto'), async (req, res) => {
+router.post("/insert", upload.single("foto"), async (req, res) => {
   try {
     const newKuliners = {
       nama_makanan: req.body.nama_makanan,
       foto: req.file ? `/uploads/${req.file.filename}` : null,
-      deskripsi: req.body.deskripsi
-    }
-    const newKuliner = await kulinerService.createKuliner(newKuliners)
-    res.status(200).json(newKuliner)
+      deskripsi: req.body.deskripsi,
+      lokasi: req.body.lokasi,
+    };
+    const newKuliner = await kulinerService.createKuliner(newKuliners);
+    res.status(200).json(newKuliner);
+    console.log("body", req.body);
+    console.log("file", req.file);
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
+    console.log("body", req.body);
+    console.log("file", req.file);
   }
-})
+});
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const newKuliner = await kulinerService.getAllKuliner()
-    res.status(200).json(newKuliner)
+    const newKuliner = await kulinerService.getAllKuliner();
+    res.status(200).json(newKuliner);
   } catch (error) {
-    res.status(500).send(error.message)
+    res.status(500).send(error.message);
   }
-})
+});
 
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const kuliner = await kulinerService.getKulinerById(req.params.id)
-    res.status(200).json(kuliner)
+    const kuliner = await kulinerService.getKulinerById(req.params.id);
+    res.status(200).json(kuliner);
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
-})
-router.patch('/:id', upload.single('foto'), async (req, res) => {
+});
+router.patch("/:id", upload.single("foto"), async (req, res) => {
   try {
-    const kulinerId = parseInt(req.params.id)
+    const kulinerId = parseInt(req.params.id);
     const kuliner = {
       ...(req.body.nama_makanan && { nama_makanan: req.body.nama_makanan }),
       ...(req.file && { foto: `/uploads/${req.file.filename}` }),
-      ...(req.body.deskripsi && { deskripsi: req.body.deskripsi })
-    }
-    const updateKuliner = await kulinerService.updateKuliner(kulinerId, kuliner)
-    res.status(200).json(updateKuliner)
+      ...(req.body.deskripsi && { deskripsi: req.body.deskripsi }),
+      ...(req.body.lokasi && { lokasi: req.body.lokasi }),
+    };
+    const updateKuliner = await kulinerService.updateKuliner(
+      kulinerId,
+      kuliner
+    );
+    res.status(200).json(updateKuliner);
   } catch (error) {
-    res.status(400).send(error.message)
+    res.status(400).send(error.message);
   }
-})
+});
 
-router.delete('/all', async (req, res) => {
+router.delete("/all", async (req, res) => {
   try {
-    await kulinerService.removeAllKuliner()
+    await kulinerService.removeAllKuliner();
     res
       .status(200)
-      .json({ message: 'Semua daftar rumah makan berhasil dihapus' })
+      .json({ message: "Semua daftar rumah makan berhasil dihapus" });
   } catch (error) {
-    res.status(500).json(error.message)
+    res.status(500).json(error.message);
   }
-})
+});
 
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
-    const kuliner = req.params.id
-    await kulinerService.removeKulinerById(kuliner)
-    res.status(200).json({ message: 'Kuliner berhasil terhapus' })
+    const kuliner = req.params.id;
+    await kulinerService.removeKulinerById(kuliner);
+    res.status(200).json({ message: "Kuliner berhasil terhapus" });
   } catch (error) {
-    res.status(500).send(error.message)
+    res.status(500).send(error.message);
   }
-})
-module.exports = router
+});
+module.exports = router;

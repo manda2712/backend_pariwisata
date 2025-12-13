@@ -1,59 +1,64 @@
-const prisma = require('../db')
+const prisma = require("../db");
 
-async function insertKuliner (kuliner) {
+async function insertKuliner(kuliner) {
   const newKuliner = await prisma.kuliner.create({
     data: {
       nama_makanan: kuliner.nama_makanan,
       foto: kuliner.foto,
-      deskripsi: kuliner.deskripsi
-    }
-  })
-  return newKuliner
+      deskripsi: kuliner.deskripsi,
+      lokasi: kuliner.lokasi,
+    },
+  });
+  return newKuliner;
 }
 
-async function findKuliner () {
+async function findKuliner() {
   const kuliner = await prisma.kuliner.findMany({
     select: {
       id: true,
       nama_makanan: true,
+      lokasi: true,
+
       foto: true,
-      deskripsi: true
-    }
-  })
-  return kuliner
+      deskripsi: true,
+    },
+  });
+  return kuliner;
 }
 
-async function findKulinerById (id) {
+async function findKulinerById(id) {
   const kuliner = await prisma.kuliner.findUnique({
     where: {
-      id: parseInt(id)
-    }
-  })
-  return kuliner
+      id: parseInt(id),
+    },
+  });
+  return kuliner;
 }
 
-async function editKuliner (id, kuliner) {
+async function editKuliner(id, kuliner) {
   const updateKuliner = await prisma.kuliner.update({
     where: {
-      id: parseInt(id)
+      id: parseInt(id),
     },
     data: {
       nama_makanan: kuliner.nama_makanan,
       foto: kuliner.foto,
-      deskripsi: kuliner.deskripsi
-    }
-  })
-  return updateKuliner
+      deskripsi: kuliner.deskripsi,
+      lokasi: kuliner.lokasi
+
+    },
+  });
+  return updateKuliner;
 }
 
-async function deleteKulinerById (id) {
+async function deleteKulinerById(id) {
   await prisma.kuliner.delete({
-    where: { id: parseInt(id) }
-  })
+    where: { id: parseInt(id) },
+  });
 }
 
-async function deleteAllKuliner () {
-  return await prisma.kuliner.deleteMany({})
+async function deleteAllKuliner() {
+  return await prisma.kuliner.deleteMany({});
 }
 
 module.exports = {
@@ -62,5 +67,5 @@ module.exports = {
   findKulinerById,
   editKuliner,
   deleteAllKuliner,
-  deleteKulinerById
-}
+  deleteKulinerById,
+};
