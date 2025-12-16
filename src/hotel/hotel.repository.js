@@ -26,8 +26,6 @@ async function findHotel () {
       nama_hotel: true,
       foto: true,
       telepon: true,
-      alamat: true,
-      deskripsi: true,
       jumlah_kamar: true,
       jumlah_tempatTidur: true,
       harga: true,

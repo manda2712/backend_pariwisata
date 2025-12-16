@@ -47,6 +47,7 @@ router.patch('/:id', upload.single('foto'), async (req, res) => {
     const desaWistaId = parseInt(req.params.id)
     const desaWisata = {
       ...(req.body.namaDesa && { namaDesa: req.body.namaDesa }),
+      ...(req.body.deskripsi && { deskripsi: req.body.deskripsi }),
       ...(req.body.lokasi && { lokasi: req.body.lokasi }),
       ...(req.file && { foto: `/uploads/${req.file.filename}` }),
       ...(req.body.longitude && { longitude: req.body.longitude }),

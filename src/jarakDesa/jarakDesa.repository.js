@@ -25,6 +25,11 @@ async function findJarak () {
     select: {
       id: true,
       desaId: true,
+      desa: {
+        select: {
+          namaDesa: true
+        }
+      },
       titikKota: true,
       jalur_laut: true,
       jalur_darat: true,
@@ -38,6 +43,19 @@ async function findJarakById (id) {
   const jarakDesa = await prisma.jarakDesa.findUnique({
     where: {
       id: parseInt(id)
+    },
+    select: {
+      id: true,
+      desaId: true,
+      desa: {
+        select: {
+          namaDesa: true
+        }
+      },
+      titikKota: true,
+      jalur_laut: true,
+      jalur_darat: true,
+      jalur_udara: true
     }
   })
   return jarakDesa
