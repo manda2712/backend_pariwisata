@@ -74,7 +74,7 @@ model jarakDesa {
   jalur_laut  String
   jalur_darat String
   jalur_udara String
-  desa        desaWisata @relation(fields: [desaId], references: [id])
+  desa        desaWisata @relation(fields: [desaId], references: [id], onDelete: Cascade)
 }
 
 enum Kota {
@@ -101,7 +101,7 @@ model RumahMakan {
   resto      String
   kulinerId  Int
   link_gmaps String
-  kuliner    Kuliner @relation(fields: [kulinerId], references: [id])
+  kuliner    Kuliner @relation(fields: [kulinerId], references: [id], onDelete: Cascade)
 }
 
 model Hotel {
