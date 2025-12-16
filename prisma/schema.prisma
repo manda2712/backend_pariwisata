@@ -116,3 +116,19 @@ model Hotel {
   link_gmaps         String
   lokasi             String
 }
+
+model Visitor {
+  id        Int        @id @default(autoincrement())
+  uid       String     @unique
+  userAgent String
+  createdAt DateTime   @default(now())
+  pageViews pageView[]
+}
+
+model pageView {
+  id        Int      @id @default(autoincrement())
+  page      String
+  visitorId Int
+  createdAt DateTime @default(now())
+  visitor   Visitor  @relation(fields: [visitorId], references: [id])
+}

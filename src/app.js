@@ -44,3 +44,9 @@ app.use('/api/hotel', hotelController)
 
 const jarakDesaController = require('./jarakDesa/jarakDesa.controller')
 app.use('/api/jarak', jarakDesaController)
+
+const visitorRouter = require('./visitor/visitor.controller')
+app.use('/api/visitor', visitorRouter)
+
+const pageViewRouter = require('./pageView/pageView.controller')
+app.use('/api/pageview', pageViewRouter)
