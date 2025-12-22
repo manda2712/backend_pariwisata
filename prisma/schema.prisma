@@ -118,7 +118,7 @@ model Hotel {
 }
 
 model Visitor {
-  id        Int        @id @default(autoincrement())
+  id        String     @id @default(uuid())
   uid       String     @unique
   userAgent String
   createdAt DateTime   @default(now())
@@ -128,7 +128,7 @@ model Visitor {
 model pageView {
   id        Int      @id @default(autoincrement())
   page      String
-  visitorId Int
+  visitorId String
   createdAt DateTime @default(now())
-  visitor   Visitor  @relation(fields: [visitorId], references: [id])
+  visitor   Visitor  @relation(fields: [visitorId], references: [uid])
 }
